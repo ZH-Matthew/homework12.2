@@ -26,18 +26,30 @@ public class Book {
         this.year = year;
     }
 
+
     @Override
-    public boolean equals(Object other) {
-        if (this.getClass() != other.getClass()) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Book c2 = (Book) other;
-        return nameBook.equals(c2.nameBook);
+        Book v2 = (Book) obj;
+        return year == v2.year &&
+                Author.equals(this.author, v2.author) &&
+                nameBook.equals(v2.nameBook);
+
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(nameBook);
+        int result1 = nameBook == null ? 0 : nameBook.hashCode();
+        int result2 = author.hashCode();
+        int resultFinal = result1;
+        resultFinal = 31 * resultFinal + result2;
+        resultFinal = 31 * resultFinal + year;
+        return resultFinal;
     }
 
     @Override

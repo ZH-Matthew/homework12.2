@@ -16,18 +16,13 @@ public class Author {
         return this.lName;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (this.getClass() != other.getClass()) {
-            return false;
-        }
-        Author c2 = (Author) other;
-        return fName.equals(c2.fName);
+    public static boolean equals(Author v1, Author v2) {
+        return (v1.fName).equals(v2.fName) && (v1.lName).equals(v2.lName);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(fName);
+        return fName.hashCode() + lName.hashCode();
     }
 
     @Override
